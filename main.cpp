@@ -103,7 +103,6 @@ void triangle_test(){
 
 
 void jagged_test(const int num, int test_amt){
-    test_amt %= 10;
     reset();
     for(int j = 0; j<test_amt; j++){
         vec3 v0 = {10,-15,0};
@@ -147,7 +146,7 @@ void jagged_test(const int num, int test_amt){
         filename[12] = j + '0';
         writeBinarySTL(filename, tris);
         reset();
-        }
+    }
 
 }
 
