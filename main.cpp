@@ -174,11 +174,16 @@ void jagged_test(const int num, int test_amt){
         add(v0,v1,v2);
         radius = std::max(max_x,max_y);
 
+        v0 = {-10,0,0};
+        v1 = {10,0,0};
+        v2 = {(v0.x+v1.x)/2,(v0.y+v1.y)/2,-10};
+        add(v0,v1,v2);
+
         v0 = {-10,radius,0};
         v1 = {10,radius,0};
         v2 = {(v0.x+v1.x)/2,(v0.y+v1.y)/2,-10};
-        
         add(v0,v1,v2);
+        
         std::cout << '\t' << max_x <<'\t' <<  max_y << '\t' << radius << '\n';
     
         char filename[] = "string_test_0.stl";
