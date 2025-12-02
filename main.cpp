@@ -4,7 +4,7 @@
 #include <cstdint>
 #include <iostream>
 #include <chrono> // For seeding with current time
-
+#include <algorithm>
 
 struct vec3 {
     float x, y, z;
@@ -16,6 +16,9 @@ struct triangle {
     vec3 v1, v2, v3;
 };
 std::vector<triangle> tris;
+int max_x = 0;
+int max_y = 0;
+int radius = 0;
 
 std::ostream& operator<<(std::ostream& os, const vec3& a){
     os << a.x << '\t' << a.y << '\t' << a.z;
@@ -63,13 +66,17 @@ void writeBinarySTL(const std::string& filename, const std::vector<triangle>& tr
 
 
 inline void reset(){
+    max_x = 0;
+    max_y = 0;
+    radius= 0;    
     tris.clear();
 }
 
 inline void add(vec3 a, vec3 b, vec3 c){
     vec3 norm = computeNormal(a,b,c);
     //std::cout << norm << '\n' << a << '\n' << b << '\n' << c << '\n' << '\n';
-    
+    max_x = std::max({max_x,abs(a.x), abs(b.x),abs(c.x)});
+    max_y = std::max({max_y,abs(a.y), abs(b.y),abs(c.y)});
     tris.push_back(((triangle){
         normal:{0,0,0},
         v1:a,
@@ -165,6 +172,8 @@ void jagged_test(const int num, int test_amt){
         v1= {10,-10,0};
         v2 = {(v0.x+v1.x)/2,(v0.y+v1.y)/2,-10};
         add(v0,v1,v2);
+        radius = std::max(max_x,max_y);
+        std::cout << '\t' << max_x <<'\t' <<  max_y << '\t' << radius;
     
         char filename[] = "string_test_0.stl";
         filename[12] = j + '0';
@@ -178,8 +187,6 @@ void jagged_test(const int num, int test_amt){
 
 int main() {
     jagged_test(100,5);
-
     triangle_test();
-
     
 }
