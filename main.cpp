@@ -101,6 +101,29 @@ void triangle_test(){
     reset();
 };
 
+float r(float min, float max) //range : [min, max]
+{
+   static bool first = true;
+   if (first) 
+   {  
+      srand( time(NULL) ); //seeding for the first time only!
+      first = false;
+   }
+   return (float)(min + rand() % (int)(( max + 1 ) - min));
+}
+
+// 1 increase, 0 not change, -1 decrease
+float r_new(const float self, int state){
+    switch(state){
+    case 1: // increase
+        return r(self+1, self+2);
+    break;
+    case -1: // decrease 
+        return r(self-2,self-1);
+    break;
+    }
+    return r(self-5,self+5);
+}
 
 void jagged_test(const int num, int test_amt){
     if(tris.size() >0)
@@ -151,29 +174,7 @@ void jagged_test(const int num, int test_amt){
 
 }
 
-float r(float min, float max) //range : [min, max]
-{
-   static bool first = true;
-   if (first) 
-   {  
-      srand( time(NULL) ); //seeding for the first time only!
-      first = false;
-   }
-   return (float)(min + rand() % (int)(( max + 1 ) - min));
-}
 
-// 1 increase, 0 not change, -1 decrease
-float r_new(const float self, int state){
-    switch(state){
-    case 1: // increase
-        return r(self+1, self+2);
-    break;
-    case -1: // decrease 
-        return r(self-2,self-1);
-    break;
-    }
-    return r(self-5,self+5);
-}
 
 int main() {
     jagged_test(100,5);
