@@ -136,12 +136,13 @@ void jagged_test(const int num, int test_amt){
     if(tris.size() >0)
         reset();
     for(int j = 0; j<test_amt; j++){
-        vec3 v0 = {10,-15,0};
-        vec3 v1= {10,-10,0};
+        vec3 v0 = {r(num-5,num+5)*2,-(r(num-5,num+5)*2),0};
+        vec3 v1= {v0.x,v0.y+5,0};
         vec3 v2 = {(v0.x+v1.x)/2,(v0.y+v1.y)/2,-10};
         add(v0,v1,v2);
         v0 = v1;
         for(int i =0; i<num; i++){ // y increasing
+            
             v1 = {r_new(v1.x, 0),r_new(v1.y,1),0};
             v2 = {(v0.x+v1.x)/2,(v0.y+v1.y)/2,-10};
             add(v0,v1,v2);
