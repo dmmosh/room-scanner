@@ -103,7 +103,8 @@ void triangle_test(){
 
 
 void jagged_test(const int num, int test_amt){
-    reset();
+    if(tris.size() >0)
+        reset();
     for(int j = 0; j<test_amt; j++){
         vec3 v0 = {10,-15,0};
         vec3 v1= {10,-10,0};
