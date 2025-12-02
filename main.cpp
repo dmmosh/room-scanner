@@ -75,8 +75,8 @@ inline void reset(){
 inline void add(vec3 a, vec3 b, vec3 c){
     vec3 norm = computeNormal(a,b,c);
     //std::cout << norm << '\n' << a << '\n' << b << '\n' << c << '\n' << '\n';
-    max_x = std::max({max_x,abs(a.x), abs(b.x),abs(c.x)});
-    max_y = std::max({max_y,abs(a.y), abs(b.y),abs(c.y)});
+    max_x = std::max({max_x,std::abs(a.x), std::abs(b.x),std::abs(c.x)});
+    max_y = std::max({max_y,std::abs(a.y), std::abs(b.y),std::abs(c.y)});
     tris.push_back(((triangle){
         normal:{0,0,0},
         v1:a,
