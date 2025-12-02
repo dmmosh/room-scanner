@@ -175,7 +175,7 @@ float r_new(const float self, int state){
 }
 
 int main() {
-    jagged_test(5);
+    jagged_test(1);
     
     triangle_test();
 
