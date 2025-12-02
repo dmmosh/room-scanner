@@ -170,18 +170,8 @@ void jagged_test(const int num, int test_amt){
             v0 = v1;
         }
     
-        v1= {10,-10,0};
-        v2 = {(v0.x+v1.x)/2,(v0.y+v1.y)/2,-10};
-        add(v0,v1,v2);
-        radius = std::max(max_x,max_y);
 
-        v0 = {-10,0,0};
-        v1 = {10,0,0};
-        v2 = {(v0.x+v1.x)/2,(v0.y+v1.y)/2,-10};
-        add(v0,v1,v2);
-
-        v0 = {-10,radius,0};
-        v1 = {10,radius,0};
+        v1 = {tris[0].v1.x,tris[0].v2.y,0};
         v2 = {(v0.x+v1.x)/2,(v0.y+v1.y)/2,-10};
         add(v0,v1,v2);
         
