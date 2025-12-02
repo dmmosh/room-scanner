@@ -68,7 +68,7 @@ inline void reset(){
 
 inline void add(vec3 a, vec3 b, vec3 c){
     vec3 norm = computeNormal(a,b,c);
-    std::cout << norm << '\n' << a << '\n' << b << '\n' << c << '\n' << '\n';
+    //std::cout << norm << '\n' << a << '\n' << b << '\n' << c << '\n' << '\n';
     
     tris.push_back(((triangle){
         normal:{0,0,0},
