@@ -16,9 +16,9 @@ struct triangle {
     vec3 v1, v2, v3;
 };
 std::vector<triangle> tris;
-int max_x = 0;
-int max_y = 0;
-int radius = 0;
+float max_x = 0;
+float max_y = 0;
+float radius = 0;
 
 std::ostream& operator<<(std::ostream& os, const vec3& a){
     os << a.x << '\t' << a.y << '\t' << a.z;
@@ -173,6 +173,9 @@ void jagged_test(const int num, int test_amt){
         v2 = {(v0.x+v1.x)/2,(v0.y+v1.y)/2,-10};
         add(v0,v1,v2);
         radius = std::max(max_x,max_y);
+
+        v0 = {0,radius,0};
+        v2 = {(v0.x+v1.x)/2,(v0.y+v1.y)/2,-10};
         std::cout << '\t' << max_x <<'\t' <<  max_y << '\t' << radius << '\n';
     
         char filename[] = "string_test_0.stl";
