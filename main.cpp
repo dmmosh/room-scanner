@@ -101,6 +101,55 @@ void triangle_test(){
     reset();
 };
 
+void jagged_test(const int num){
+    reset();
+    for(int j = 0; j<10; j++){
+        vec3 v0 = {10,-15,0};
+        vec3 v1= {10,-10,0};
+        vec3 v2 = {(v0.x+v1.x)/2,(v0.y+v1.y)/2,-10};
+        add(v0,v1,v2);
+        v0 = v1;
+        for(int i =0; i<num; i++){ // y increasing
+            v1 = {r_new(v1.x, 0),r_new(v1.y,1),0};
+            v2 = {(v0.x+v1.x)/2,(v0.y+v1.y)/2,-10};
+            add(v0,v1,v2);
+            v0 = v1;
+        }
+    
+        for(int i =0; i<num; i++){ // x decreasing
+            v1 = {r_new(v1.x, -1),r_new(v1.y,0),0};
+            v2 = {(v0.x+v1.x)/2,(v0.y+v1.y)/2,-10};
+            add(v0,v1,v2);
+            v0 = v1;
+        }
+    
+        for(int i =0; i<num; i++){ // y decreasing
+            v1 = {r_new(v1.x, 0),r_new(v1.y,-1),0};
+            v2 = {(v0.x+v1.x)/2,(v0.y+v1.y)/2,-10};
+            add(v0,v1,v2);
+            v0 = v1;
+        }
+    
+        for(int i =0; i<num; i++){ // x increasing
+            v1 = {r_new(v1.x, 1),r_new(v1.y,0),0};
+            v2 = {(v0.x+v1.x)/2,(v0.y+v1.y)/2,-10};
+            add(v0,v1,v2);
+            v0 = v1;
+        }
+    
+        v1= {10,-10,0};
+        v2 = {(v0.x+v1.x)/2,(v0.y+v1.y)/2,-10};
+        add(v0,v1,v2);
+    
+        char filename[] = "string_test_0.stl";
+        filename[12] = j + '0';
+        writeBinarySTL(filename, tris);
+        reset();
+        }
+
+    reset();
+}
+
 float r(float min, float max) //range : [min, max]
 {
    static bool first = true;
@@ -125,52 +174,9 @@ float r_new(const float self, int state){
     return r(self-5,self+5);
 }
 
-#define TEST_NUM 500
 int main() {
-
-    for(int j = 0; j<10; j++){
-    vec3 v0 = {10,-15,0};
-    vec3 v1= {10,-10,0};
-    vec3 v2 = {(v0.x+v1.x)/2,(v0.y+v1.y)/2,-10};
-    add(v0,v1,v2);
-    v0 = v1;
-    for(int i =0; i<TEST_NUM; i++){ // y increasing
-        v1 = {r_new(v1.x, 0),r_new(v1.y,1),0};
-        v2 = {(v0.x+v1.x)/2,(v0.y+v1.y)/2,-10};
-        add(v0,v1,v2);
-        v0 = v1;
-    }
-
-    for(int i =0; i<TEST_NUM; i++){ // x decreasing
-        v1 = {r_new(v1.x, -1),r_new(v1.y,0),0};
-        v2 = {(v0.x+v1.x)/2,(v0.y+v1.y)/2,-10};
-        add(v0,v1,v2);
-        v0 = v1;
-    }
-
-    for(int i =0; i<TEST_NUM; i++){ // y decreasing
-        v1 = {r_new(v1.x, 0),r_new(v1.y,-1),0};
-        v2 = {(v0.x+v1.x)/2,(v0.y+v1.y)/2,-10};
-        add(v0,v1,v2);
-        v0 = v1;
-    }
-
-    for(int i =0; i<TEST_NUM; i++){ // x increasing
-        v1 = {r_new(v1.x, 1),r_new(v1.y,0),0};
-        v2 = {(v0.x+v1.x)/2,(v0.y+v1.y)/2,-10};
-        add(v0,v1,v2);
-        v0 = v1;
-    }
-
-    v1= {10,-10,0};
-    v2 = {(v0.x+v1.x)/2,(v0.y+v1.y)/2,-10};
-    add(v0,v1,v2);
-
-    char filename[] = "string_test_0.stl";
-    filename[12] = j + '0';
-    writeBinarySTL(filename, tris);
-    reset();
-    }
+    jagged_test(500);
+    
     triangle_test();
 
     
