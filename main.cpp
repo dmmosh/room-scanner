@@ -101,9 +101,11 @@ void triangle_test(){
     reset();
 };
 
-void jagged_test(const int num){
+
+void jagged_test(const int num, int test_amt){
+    test_amt %= 10;
     reset();
-    for(int j = 0; j<10; j++){
+    for(int j = 0; j<test_amt; j++){
         vec3 v0 = {10,-15,0};
         vec3 v1= {10,-10,0};
         vec3 v2 = {(v0.x+v1.x)/2,(v0.y+v1.y)/2,-10};
@@ -147,7 +149,6 @@ void jagged_test(const int num){
         reset();
         }
 
-    reset();
 }
 
 float r(float min, float max) //range : [min, max]
@@ -175,8 +176,8 @@ float r_new(const float self, int state){
 }
 
 int main() {
-    jagged_test(1);
-    
+    jagged_test(100,5);
+
     triangle_test();
 
     
